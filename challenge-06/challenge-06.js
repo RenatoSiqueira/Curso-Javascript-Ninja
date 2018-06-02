@@ -33,17 +33,17 @@ Crie uma função chamada `showTeamPosition` com as seguintes características:
     "Não temos a informação do time que está nessa posição."
 */
 function showTeamPosition(number) {
-	( number <= teams.length ) ? console.log("O time que está em " + number + "º lugar é o " + teams[number-1] + ".") : console.log("Não temos a informação do time que está nessa posição.");
+	( number < 1 || number <= teams.length ) ? console.log("O time que está em " + number + "º lugar é o " + teams[number-1] + ".") : console.log("Não temos a informação do time que está nessa posição.");
 };
 
 /*
 Escolha 4 times do campeonato selecionado e mostre a posição dele, usando a
 função acima. Entre esses 4, adicione 1 que não esteja entre os 5 primeiros.
 */
-showTeamPosition(1); // O time que está em 1º lugar é o Flamengo.
-showTeamPosition(3); // O time que está em 3º lugar é o Corinthians.
-showTeamPosition(5); // O time que está em 5º lugar é o Internacional.
-teams[5] = "Cruzeiro";
+console.log ( showTeamPosition(1) ); // O time que está em 1º lugar é o Flamengo.
+console.log ( showTeamPosition(3) ); // O time que está em 3º lugar é o Corinthians.
+console.log ( showTeamPosition(5) ); // O time que está em 5º lugar é o Internacional.
+console.log ( showTeamPosition(8) ); // Não temos a informação do time que está nessa posição.
 
 /*
 Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
@@ -51,8 +51,7 @@ repetição "while".
 */
 var i = 20;
 while ( i <= 30 ) {
-	console.log(i);
-	i++;
+	console.log(i++);
 }
 
 /*
