@@ -23,7 +23,7 @@
     concatenadas. Mostre o `brasil` no console.
     */
     console.log( '\nAlguns Estados do Brasil:' );
-    const brasil = sul.concat(sudeste)
+    let brasil = sul.concat(sudeste)
     console.log( brasil )
 
     /*
@@ -72,13 +72,13 @@
     Remova de `brasil` os estados do `sudeste`, colocando-os em uma variável
     chamada `newSudeste`.
     */
-    const newSudeste = brasil.splice(5, 3)
+    const newSudeste = brasil.splice( 5 )
 
     /*
     Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
     ficar no mesmo nível que os estados já existentes, não em um array separado.
     */
-    brasil.concat(nordeste)
+    brasil = brasil.concat( nordeste );
 
     /*
     Mostre no console os estados em `newSudeste`.
@@ -101,7 +101,7 @@
     */
     const newBrasil = []
     brasil.forEach( function(item, index) {
-        return newBrasil.push( { id: index, estado: item } )
+        newBrasil.push( { id: index, estado: item } )
     })
 
     /*
@@ -121,7 +121,11 @@
     const every = brasil.every( function(item) {
         return item.length > 7
     })
-    console.log( (every)? "Sim, todos os estados tem mais de 7 letras!": "Nem todos os estados tem mais de 7 letras!" )
+    console.log( 
+        every 
+        ? "Sim, todos os estados tem mais de 7 letras!"
+        : "Nem todos os estados tem mais de 7 letras!" 
+    )
 
     /*
     Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
@@ -135,7 +139,11 @@
     const some = brasil.some( function(item) {
         return item === 'Ceará'
     })
-    console.log( (some)? "Ceará está incluído!" : "Ceará não foi incluído :(" )
+    console.log( 
+        some
+        ? "Ceará está incluído!" 
+        : "Ceará não foi incluído :(" 
+    )
 
     /*
     Percorra o array `newBrasil` e crie um novo array que some 1 no ID de cada
@@ -144,7 +152,10 @@
     Atribua o novo array a uma variável chamada `map`.
     */
     const map = newBrasil.map( function(item, index){
-        return { index: index + 1, estado: item.estado + ' pertence ao Brasil.'}
+        return { 
+            id: ++index, 
+            estado: item.estado + ' pertence ao Brasil.'
+        }
     })
 
     /*
@@ -158,7 +169,7 @@
     ID par. Atribua o valor à uma variável chamada `filter`.
     */
     const filter = map.filter( function(index) {
-        return index.index % 2 === 0
+        return index.id % 2 === 0
     })
 
     /*
