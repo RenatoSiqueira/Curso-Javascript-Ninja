@@ -17,9 +17,8 @@
     */
     console.log( 'As letras do seu nome:' );
     var name = 'Renato'
-    for( var i = 0; i < name.length; i++) {
-        var letra = i + 1
-        console.log( name.charAt(i) +" é a "+ letra +"ª letra do meu nome.")
+    for( var i = 0, len = name.length; i < len; i++) {
+        console.log( name.charAt(i) +" é a "+ (i + 1) +"ª letra do meu nome.")
     }
 
     /*
@@ -44,10 +43,17 @@
         }
         return arr.join(' ')
     }
+
+    var newFullNameMap = fullName
+        .split('-')
+        .map(function(item){
+            return item.charAt(0).toUpperCase() + item.slice(1)
+        })
+        .join(' ')
     
     console.log('Slug: ', fullName)
-    console.log('Final Result: ', newFullName(fullName))
-
+    console.log('For Result: ', newFullName(fullName))
+    console.log('Map Result: ', newFullNameMap)
 
     /*
     - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -59,14 +65,22 @@
     5 nomes foi somente uma sugestão ;)
     */
     console.log( '\nMeus amigos:' );
-    var arrAmigos = [ 'Matheus', 'Marcos', 'Lucas', 'João', 'Paulo', 'Moisés' ]
-    function newAmigos(amigos){
-        return amigos
-            .slice(0, [amigos.length - 1])
-            .join(', ')
-            .concat( " e ", amigos[amigos.length -1], " são meus amigos.")
-    }
-    console.log( newAmigos(arrAmigos) )
+    var arrAmigos = [ 'Matheus', 'Marcos', 'Lucas', 'João', 'Paulo', 'Moisés', 'Ana' ]
+    var newAmigos = arrAmigos
+                    .slice(0, [arrAmigos.length - 1])
+                    .join(', ')
+                    .concat( " e ", arrAmigos[arrAmigos.length -1], " são meus amigos.")
+    
+    var newAmigosReduce = arrAmigos
+        .reduce(function(acumulado, nome, index){
+            var separador = arrAmigos.length - 1 === index ? ' e ' : ' , '
+            return acumulado + separador + nome
+        })
+        .concat(' são meus amigos.')
+
+
+    console.log('Slice/Join/Concat:', newAmigos )
+    console.log('Reduce/Concat:', newAmigosReduce )
 
     /*
     Usando o replace(), faça a string "Roberto" virar "Roberta".
@@ -101,7 +115,7 @@
     function alternateLetter(name){
         name = name.toLowerCase()
         var myName = ''
-        for( var i = 0; i < name.length; i++){
+        for( var i = 0, len = name.length; i < len; i++){
             ( i % 2 === 0 )
                 ? myName += name.charAt(i).toUpperCase()
                 : myName += name.charAt(i)
