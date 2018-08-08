@@ -92,9 +92,9 @@
         var numberMonth =  meses.indexOf(nomeMonth) + 1
         return numberMonth.toString().length < 2 ? '0' + numberMonth : numberMonth
     }
-    console.log ( getMonthNumber('março')  )
-    console.log ( getMonthNumber('setembro') )
-    console.log ( getMonthNumber('dezembro') )
+    console.log ( 'O mês de março é representado pelo número ' + getMonthNumber('março') + '.' )
+    console.log ( 'O mês de setembro é representado pelo número ' + getMonthNumber('setembro') + '.' )
+    console.log ( 'O mês de dezembro é representado pelo número ' + getMonthNumber('dezembro') + '.' )
 
     /*
     Agora, declare uma variável chamada `regexDate` que irá receber a expressão
@@ -105,6 +105,8 @@
     Mostre a regex no console.
     */
     console.log( '\nRegex que vai fazer o match com as datas do texto:' );
+    var regexDate = /(\d\d) de (junho|julho) de (\d\d\d\d)/g
+    console.log( regexDate )
     
     /*
     Agora crie a função que irá fazer o replace dos dados. A função será chamada
@@ -114,5 +116,8 @@
     console o resultado.
     */
     console.log( '\nReplace de datas:' );
-    // ?
+    function replaceDate(regex, $1, $2, $3){
+        return $1 + '/' + getMonthNumber($2) + '/' + $3
+    }
+    console.log( text.replace( regexDate, replaceDate ) )
 })()
