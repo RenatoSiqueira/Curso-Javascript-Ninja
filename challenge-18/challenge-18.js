@@ -20,10 +20,9 @@
         return cpf.replace(/\D/g, '')
     }
     console.log( 'Limpando CPFs:' );
-    console.log(cleanCPF("049-214 3421-1"))
-    console.log(cleanCPF("210.458.522-05"))
-    console.log(cleanCPF("735 500 794 - 22"))
-    console.log(cleanCPF("101.123-131x32"))
+
+    const cpfs = [ "049-214 3421-1", "210.458.522-05", "735 500 794 - 22", "101.123-131x32" ]
+    cpfs.forEach( item => console.log(cleanCPF(item)) )
 
     /*
     Usando os CPFs limpos acima, deixe-os com a formatação correta de CPF.
@@ -31,6 +30,11 @@
     Mostre o resultado no console.
     */
     console.log( '\nFormatando CPFs corretamente:' );
+    cpfs.forEach( 
+            item => console.log(
+                cleanCPF(item).replace( /(\d{3})(\d{3})(\d{3})(\d{2})/ , '$1.$2.$3-$4' )
+            ) 
+    )
 
     /*
     Crie uma expressão regular que faça match com as palavras "junho" ou "julho",
@@ -44,7 +48,10 @@
     ["junho", "julho"]
     */
     console.log( '\nMatch com as palavras "junho" ou "julho" para a frase "Os meses de janeiro, junho e julho começam com a letra j.":' );
-
+    console.log("Os meses de janeiro, junho e julho começam com a letra j.".match(
+        /ju[nl]ho/g
+    ))
+    
     /*
     Crie uma expressão regular que faça o match com a abertura de uma tag
     HTML qualquer.
@@ -55,7 +62,8 @@
     ["<div>", "<section>", "<blockquote>"]
     */
     console.log( '\nMatch com a abertura de uma tag HTML:' );
-    // ?
+    const tags = "<div><section><blockquote>Texto <img /></blockquote></section></div>"
+    console.log( tags.match( /<\w+>/g ) )
 
     /*
     Crie uma expressão regular que faça o match com uma tag HTML vazia, casando
@@ -67,7 +75,8 @@
     ["<li></li>", "<li></li>", "<span></span>"]
     */
     console.log( '\nMatch com tags HTML vazias (abertura e fechamento da tag):' );
-    // ?
+    const string = "<div><ul><li></li><li></li><li><span></span></li></ul></div>"
+    console.log( string.match( /<\w+><\/\w+>/g ) )
 
     /*
     Vamos complicar um pouco agora :D
@@ -92,5 +101,12 @@
     corretas, para depois aplicar no código ;)
     */
     console.log( '\nFazer replace dos textos das tags:' );
-    // ?
+    const tag = "<h1>Título da página</h1><p>Este é um parágrafo</p><footer>Rodapé</footer>"
+    console.log( 
+        tag.replace( 
+            /<(\w+)>([^<]+)<\/\w+>/g ,
+            '<$1>O texto dentro da tag "$1" é "$2"</$1>\n'
+        )
+    )
+
 })()
